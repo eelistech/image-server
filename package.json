@@ -1,0 +1,23 @@
+{
+		"name": "imgserver",
+		"version": "1.0.0",
+		"main": "index.js",
+		"license": "MIT",
+		"scripts": {
+				"start": "NODE_ENV=production node dist/index.bundle.js",
+				"dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js",
+				"clean": "rimraf dist",
+				"dev:build": "yarn run clean && webpack --mode development -w",
+				"prod:build": "yarn run clean && webpack --mode production"
+		},
+		"dependencies": {
+				"express": "^4.17.1",
+				"sharp": "^0.23.3"
+		},
+		"devDependencies": {
+				"cross-env": "^6.0.3",
+				"nodemon": "^2.0.1",
+				"rimraf": "^3.0.0",
+				"webpack": "^4.41.2"
+		}
+}
