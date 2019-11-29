@@ -1,23 +1,51 @@
 {
-		"name": "imgserver",
-		"version": "1.0.0",
-		"main": "index.js",
-		"license": "MIT",
-		"scripts": {
-				"start": "NODE_ENV=production node dist/index.bundle.js",
-				"dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js",
-				"clean": "rimraf dist",
-				"dev:build": "yarn run clean && webpack --mode development -w",
-				"prod:build": "yarn run clean && webpack --mode production"
-		},
-		"dependencies": {
-				"express": "^4.17.1",
-				"sharp": "^0.23.3"
-		},
-		"devDependencies": {
-				"cross-env": "^6.0.3",
-				"nodemon": "^2.0.1",
-				"rimraf": "^3.0.0",
-				"webpack": "^4.41.2"
-		}
+	"name": "imgserver",
+	"version": "1.0.0",
+	"main": "index.js",
+	"description": "",
+	"license": "MIT",
+	"scripts": {
+		"start": "NODE_ENV=production node dist/index.bundle.js",
+		"dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js",
+		"clean": "rimraf dist",
+		"dev:build": "yarn run clean && webpack --mode development -w",
+		"prod:build": "yarn run clean && webpack --mode production"
+	},
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"chalk": "^3.0.0",
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"express-favicon-short-circuit": "^1.1.1",
+		"express-status-monitor": "^1.2.7",
+		"express-winston": "^4.0.1",
+		"helmet": "^3.21.2",
+		"http-status": "^1.4.1",
+		"image-downloader": "^3.5.0",
+		"method-override": "^3.0.0",
+		"mime": "^2.4.4",
+		"sharp": "^0.23.3",
+		"socket.io": "^2.3.0",
+		"winston": "^3.2.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.7.4",
+		"@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+		"@babel/preset-env": "^7.7.4",
+		"babel-loader": "^8.0.6",
+		"cross-env": "^6.0.3",
+		"dotenv": "^8.2.0",
+		"eslint": ">=4.0.0",
+		"eslint-config-equimper": "2.2.2",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.16.0",
+		"morgan": "^1.9.1",
+		"nodemon": "^2.0.1",
+		"rimraf": "^3.0.0",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10",
+		"webpack-node-externals": "^1.7.2"
+	}
 }

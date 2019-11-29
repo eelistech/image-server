@@ -1,0 +1,23 @@
+{
+    "extends": "equimper",
+	"rules": {
+		"no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "no-extra-semi": "error",
+        "eqeqeq": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/interactive-supports-focus": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "indent": 0,
+        "camelcase": "off",
+        "no-nested-ternary": "off",
+        "max-len": "off"
+	}
+}
