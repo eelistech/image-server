@@ -6,7 +6,9 @@ import * as ic from '../controllers/image.controller';
 
 const routes = new Router();
 
-routes.get('/images/:dir/:image', ic.renderImage);
+routes.get('/', (req, res) => res.json({ message: 'ImageServer API v1' }));
+routes.get('/api', (req, res) => res.json({ message: 'ImageServer API v1' }));
+routes.get('/api/*', ic.renderImage);
 
 routes.all('*', (req, res, next) =>
 	next(new APIError('Not Found!', HTTPStatus.NOT_FOUND, true))

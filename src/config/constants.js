@@ -13,7 +13,6 @@ const prodConfig = {
 
 const defaultConfig = {
 	PORT: process.env.PORT || 5000,
-	CDN_URL: process.env.CDN_URL,
 	TMP_PATH: `${process.env.PWD}/tmp`,
 };
 

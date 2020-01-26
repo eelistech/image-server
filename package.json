@@ -8,8 +8,8 @@
 		"start": "NODE_ENV=production node dist/index.bundle.js",
 		"dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js",
 		"clean": "rimraf dist",
-		"dev:build": "yarn run clean && webpack --mode development -w",
-		"prod:build": "yarn run clean && webpack --mode production"
+		"watch": "yarn run clean && webpack --mode development -w",
+		"build": "yarn run clean && webpack --mode production"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",

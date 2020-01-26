@@ -8,16 +8,18 @@ import constants from '../config/constants';
 import * as resize from '../modules/resize';
 
 export const renderImage = async (req, res, next) => {
-	const width = req.query.w || 0;
-	const height = req.query.h || 0;
-	const dir_name = req.params.dir;
-	const image_name = req.params.image;
-	const image_mime = req.query.mime;
+	const image_path = req.params[0];
+	const split_path = image_path.split('/');
+	// [ 'width', '163.5', 'height', '163.5', 'mime', 'webp', 'localhost:3000', 'images', 'o_a_1.jpg' ]
+	const width = split_path[0] === 'width' ? split_path[1] : 0;
+	const height = split_path[2] === 'height' ? split_path[3] : width;
+	const image_mime = split_path[4] === 'mime' ? split_path[5] : 'webp';
 
-	const pathname = dir_name === 'artwork' ? 'lib/artwork' : dir_name;
+	const l = split_path.length;
+	const image_url = `http://${split_path[l - 3]}/${split_path[l - 2]}/${split_path[l - 1]}`;
 
 	const options = {
-		url: `${constants.CDN_URL}/${pathname}/${image_name}`,
+		url: image_url,
 		dest: `${constants.TMP_PATH}`,
 	};
 
@@ -25,14 +27,13 @@ export const renderImage = async (req, res, next) => {
 		const { filename, image } = await download.image(options);
 		const mime_type = mime.getType(filename);
 
-		logger.info(filename);
+		// logger.info(filename);
 		logger.info(mime_type);
 
 		const _options = {
 			width: parseInt(width, 10),
 			height: parseInt(height, 10),
 			fit: sharp.fit.cover,
-			position: 'left top',
 			withoutEnlargement: true,
 		};
 

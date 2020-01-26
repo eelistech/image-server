@@ -14,14 +14,17 @@ const io = socket(server);
 
 middlewaresConfig(app, io);
 
-app.use('/', ApiRoutes);
+app.get('/', (req, res) => res.json({ message: 'ImageServer API v1' }));
+app.use('/v1', ApiRoutes);
 
-server.listen(constants.PORT, err => {
-	if (err) {
-		throw err;
-	} else {
-		console.log(
-			chalk.green.bold(`Server started. Listen on port: ${constants.PORT}.`)
-		);
-	}
-});
+if (!module.parent) {
+	server.listen(constants.PORT, err => {
+		if (err) {
+			throw err;
+		} else {
+			console.log(
+				chalk.green.bold(`Server started. Listen on port: ${constants.PORT}.`)
+			);
+		}
+	});
+}
