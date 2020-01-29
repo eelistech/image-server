@@ -8,15 +8,19 @@ import constants from '../config/constants';
 import * as resize from '../modules/resize';
 
 export const renderImage = async (req, res, next) => {
+	const secure = await req.query.secure;
+
 	const image_path = req.params[0];
 	const split_path = image_path.split('/');
 	// [ 'width', '163.5', 'height', '163.5', 'mime', 'webp', 'localhost:3000', 'images', 'o_a_1.jpg' ]
 	const width = split_path[0] === 'width' ? split_path[1] : 0;
 	const height = split_path[2] === 'height' ? split_path[3] : width;
-	const image_mime = split_path[4] === 'mime' ? split_path[5] : 'webp';
+	const image_mime = split_path[2] === 'mime' ? split_path[3] : (split_path[4] === 'mime' ? split_path[5] : 'webp');
 
 	const l = split_path.length;
-	const image_url = `http://${split_path[l - 3]}/${split_path[l - 2]}/${split_path[l - 1]}`;
+	const dirs = split_path[l - 2];
+	const dir_path = dirs.split('-').join('/');
+	const image_url = `http${secure && secure === '1' ? 's' : ''}://${split_path[l - 3]}/${dir_path}/${split_path[l - 1]}`;
 
 	const options = {
 		url: image_url,
