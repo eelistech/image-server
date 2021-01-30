@@ -21,6 +21,7 @@ export const renderImage = async (req, res, next) => {
 	const dirs = split_path[l - 2];
 	const dir_path = dirs.split('-').join('/');
 	const image_url = `http${secure && secure === '1' ? 's' : ''}://${split_path[l - 3]}/${dir_path}/${split_path[l - 1]}`;
+	logger.info(image_url);
 
 	const options = {
 		url: image_url,
@@ -28,11 +29,13 @@ export const renderImage = async (req, res, next) => {
 	};
 
 	try {
-		const { filename, image } = await download.image(options);
+		logger.info(options);
+		const { filename } = await download.image(options);
 		const mime_type = mime.getType(filename);
 
 		// logger.info(filename);
 		logger.info(mime_type);
+		logger.info(image_mime);
 
 		const _options = {
 			width: parseInt(width, 10),
@@ -44,11 +47,11 @@ export const renderImage = async (req, res, next) => {
 		let data;
 
 		if (image_mime === 'jpeg' || image_mime === 'jpg') {
-			data = await resize.jpeg(image, _options);
+			data = await resize.jpeg(filename, _options);
 		} else if (image_mime === 'png') {
-			data = await resize.png(image, _options);
+			data = await resize.png(filename, _options);
 		} else {
-			data = await resize.webp(image, _options);
+			data = await resize.webp(filename, _options);
 		}
 
 		res.setHeader('Content-Type', `image/${image_mime}`);
