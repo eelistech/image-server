@@ -40,8 +40,9 @@ export const renderImage = async (req, res, next) => {
 		const _options = {
 			width: parseInt(width, 10),
 			height: parseInt(height, 10),
-			fit: sharp.fit.cover,
+			fit: sharp.fit.contain,
 			withoutEnlargement: true,
+			background: { r: 255, g: 255, b: 255, alpha: 1.0 },
 		};
 
 		let data;
